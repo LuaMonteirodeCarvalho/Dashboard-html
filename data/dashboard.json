@@ -1,0 +1,77 @@
+{
+    "dailyQuotes": [
+        "A energia flui para onde o foco vai. Mantenha seu foco nos seus objetivos.",
+        "O otimismo é o otimismo em ação. Nada se pode levar a efeito sem otimismo.",
+        "Você é mais forte, inteligente e capaz do que imagina. Acredite no seu poder.",
+        "A persistência realiza o impossível. Siga em frente com energia!",
+        "Cada novo dia é uma nova chama. Deixe-a brilhar com toda a força.",
+        "Faça de hoje um dia incrivelmente produtivo e cheio de energia positiva.",
+        "Sua atitude determina sua altitude. Voe alto e com determinação!",
+        "O futuro pertence àqueles que acreditam na beleza e na força de seus sonhos.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "Tudo o que você precisa para vencer já está pulsing dentro de você."
+    ],
+    "moodQuotes": {
+        "feliz": [
+            "Sua alegria ilumina o mundo! Continue espalhando essa luz maravilhosa.",
+            "Aproveite cada segundo dessa felicidade, você merece sorrir sempre!",
+            "Um coração alegre é o melhor remédio. Que seu dia fique ainda melhor!"
+        ],
+        "triste": [
+            "Tudo bem não estar bem o tempo todo. Respire fundo, amanhã é um novo dia.",
+            "Não há tempestade que dure para sempre. O sol sempre volta a brilhar.",
+            "Seja gentil consigo mesma hoje. Você é forte e vai superar isso!"
+        ],
+        "desanimada": [
+            "Mesmo o menor dos passos ainda é um progresso. Vá no seu ritmo, Lua.",
+            "Você já superou 100% dos seus dias ruins até agora. Você consegue de novo!",
+            "Acredite no seu potencial. As coisas vão melhorar, não desista!"
+        ],
+        "animada": [
+            "Use toda essa energia incrível para conquistar seus maiores sonhos hoje!",
+            "O mundo não está pronto para tudo o que você vai realizar agora!",
+            "Voe alto! Sua animação é o combustível perfeito para o sucesso."
+        ],
+        "cansada": [
+            "Descansar não é desistir. Recarregue suas baterias para voltar mais forte.",
+            "Seu corpo e mente merecem esse descanso. Cuide bem de você hoje.",
+            "Não tenha pressa. O descanso de hoje é a força que você precisa para o amanhã."
+        ],
+        "energizada": [
+            "Canalize esse poder todo! Você é capaz de realizar o extraordinário agora.",
+            "Nada pode te parar! Transforme essa energia em grandes ações.",
+            "Siga esse fluxo poderoso e não deixe nada atrapalhar seu foco e determinação."
+        ]
+    },
+    "backgroundImages": [
+        "assets/bg1.png",
+        "assets/bg2.png",
+        "assets/bg3.png"
+    ],
+    "moodTracks": {
+        "feliz": {
+            "id": "1B8RSIxmwcjad7XUJjeCK2",
+            "name": "You Make Me Feel So Young – Michael Bublé"
+        },
+        "triste": {
+            "id": "4kflIGfjdZJW4ot2ioixTB",
+            "name": "Someone Like You – Adele"
+        },
+        "desanimada": {
+            "id": "1HNkqx9Ahdgi1Ixy2xkKkL",
+            "name": "Photograph – Ed Sheeran"
+        },
+        "animada": {
+            "id": "1CkvWZme3pRgbzaxZnTl5X",
+            "name": "Rolling in the Deep – Adele"
+        },
+        "cansada": {
+            "id": "1HbcclMpw0q2WDWpdGCKdS",
+            "name": "Tenerife Sea – Ed Sheeran"
+        },
+        "energizada": {
+            "id": "2uAF91abD69EEYylY2SKzG",
+            "name": "It's My Life – Bon Jovi"
+        }
+    }
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard da Lua</title>
+    <!-- Google Identity Services (GSI) and Google API Client (GAPI) serão carregados no final do body -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="main-layout">
+            <!-- Lateral Esquerda: Painel de Notícias da CBN -->
+            <div class="news-panel">
+                <div class="news-header">
+                    <div class="news-logo">CBN</div>
+                    <h2>Notícias do Dia</h2>
+                </div>
+                <div class="news-list" id="news-list">
+                    <div class="news-loading">Carregando notícias...</div>
+                </div>
+            </div>
+
+            <!-- Lateral Direita: Painel Principal do Dashboard -->
+            <div class="dashboard-content">
+                <!-- New Header Bar -->
+        <div class="header-bar">
+            <div class="user-profile" id="user-profile" style="display: none;">
+                <img id="user-avatar" class="user-avatar" src="" alt="Avatar">
+                <span id="user-name" class="user-name">Carregando...</span>
+                <button id="refresh-data-btn" class="logout-btn" onclick="refreshGoogleData()" style="margin-left: 5px;">Atualizar</button>
+                <button id="logout-btn" class="logout-btn" onclick="handleSignoutClick()">Sair</button>
+            </div>
+            <button id="google-login-btn" class="google-btn" style="display: none;" onclick="handleAuthClick()">
+                <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google logo">
+                Entrar com o Google
+            </button>
+        </div>
+
+        <h1 id="greeting">Boa Noite, Lua! 🌙</h1>
+        <div class="datetime-container">
+            <p class="date-display" id="current-date"></p>
+            <div class="time-weather-row">
+                <span id="current-time"></span>
+                <div id="header-weather" class="weather-widget" onclick="window.open('https://weather.com', '_blank')" style="cursor: pointer;">
+                    <span class="weather-widget-icon">☀️</span>
+                    <div class="weather-widget-details">
+                        <span id="weather-temp">--°C</span>
+                        <span id="weather-desc">Carregando clima...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-section">
+            <p class="quote" id="daily-quote"></p>
+        </div>
+
+        <div class="mood-container">
+            <p class="mood-label">Como você está se sentindo agora?</p>
+            <div class="mood-buttons">
+                <button onclick="changeMood('feliz', this)">Feliz 😊</button>
+                <button onclick="changeMood('triste', this)">Triste 😢</button>
+                <button onclick="changeMood('desanimada', this)">Desanimada 😔</button>
+                <button onclick="changeMood('animada', this)">Animada 🚀</button>
+                <button onclick="changeMood('cansada', this)">Cansada 😴</button>
+                <button onclick="changeMood('energizada', this)">Energizada ⚡</button>
+            </div>
+            
+            <div class="spotify-player" id="spotify-player">
+                <iframe id="spotify-iframe"
+                    src=""
+                    width="100%"
+                    height="80"
+                    frameborder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+                </iframe>
+                <div class="player-controls">
+                    <div class="bars" id="eq-bars">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <button id="pause-btn" onclick="togglePause()">⏸️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- EMAILS NÃO LIDOS -->
+            <div class="summary-card" onclick="window.open('https://mail.google.com', '_blank')">
+                <svg class="summary-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="padding: 18px; box-sizing: border-box; background: rgba(255, 165, 0, 0.1);">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <div class="summary-title">Emails Não Lidos</div>
+                <div id="unread-emails-count" class="summary-value">0</div>
+            </div>
+
+            <!-- COMPROMISSOS DE HOJE -->
+            <div class="summary-card" onclick="window.open('https://calendar.google.com', '_blank')">
+                <svg class="summary-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="padding: 18px; box-sizing: border-box; background: rgba(255, 165, 0, 0.1);">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <div class="summary-title" id="meetings-card-title">Compromissos de Hoje</div>
+                <div id="meetings-list" class="summary-list">
+                    <div class="no-events">Sem compromissos</div>
+                </div>
+            </div>
+
+        </div>
+            </div> <!-- Fim dashboard-content -->
+        </div> <!-- Fim main-layout -->
+    </div> <!-- Fim container -->
+
+    
+    <!-- Google APIs and Identity Services (Placed at the bottom to guarantee functions are parsed first) -->
+    <script src="https://accounts.google.com/gsi/client" onload="gisLoaded()" async defer></script>
+    <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()" async defer></script>
+    <script src="script.js"></script>
+</body>
+</html>
